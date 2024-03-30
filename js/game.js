@@ -1,6 +1,6 @@
 let game_W = 20;
 let game_H = 20;
-let XXX = 0, YYY = 0, Xh = 0, Yh = 0;
+let XXX = 0, YYY = 0, Xh =  0, Yh = 0;
 let MaxLeng = 0;
 let speedReturn = 0
 let R = 0, r = 0;
@@ -27,7 +27,8 @@ var levelIM = new Image();
 levelIM.src="images/level.png";
 var clockIM = new Image();
 clockIM.src="images/clock.png";
-
+var scoreIM = new Image();
+scoreIM.src="images/score.png";
 
 let N = -10;
 
@@ -174,20 +175,23 @@ class game {
                 this.gg[i].draw();
             }
 
+        // 线条
         this.context.beginPath();
-        this.context.strokeStyle  = "#FF0000";
-        this.context.lineWidth = Math.floor(this.getWidth() / 10);
-        this.context.moveTo(XXX, YYY);
-        this.context.lineTo(Xh, Yh);
-
+        this.context.strokeStyle  = "#3D3D3D";
+        this.context.lineWidth = Math.floor(this.getWidth() / 20);
+        this.context.moveTo(XXX-50, YYY+80);
+        this.context.lineTo(Xh-25, Yh+40);
+        
+        //圆点
         this.context.stroke();
         this.context.beginPath();
-        this.context.arc(XXX, YYY, 3, 0, 2 * Math.PI);
+        this.context.arc(XXX-50, YYY+80, 2, 0, 2 * Math.PI);
         this.context.stroke();
 
         this.context.save();
-        this.context.translate(Xh, Yh);
-        this.context.rotate(this.toRadian(angle - 90));
+        this.context.translate(Xh-25, Yh+40);
+        this.context.rotate(this.toRadian(angle - 100));
+        // 钩子
         this.context.drawImage(hook, - this.getWidth() / 4,- this.getWidth() / 8, this.getWidth() / 2, this.getWidth() / 2);
         this.context.restore();
 
@@ -195,31 +199,40 @@ class game {
     }
 
     drawText() {
-        this.context.drawImage(dolarIM, this.getWidth() / 2, this.getWidth() / 2, this.getWidth(), this.getWidth());
-        this.context.fillStyle = "red";
+        // 当前分数
+        this.context.drawImage(dolarIM, this.getWidth() / 2, this.getWidth()*2 , this.getWidth()*2.6, this.getWidth()*0.6);
+        // 文字
+        this.context.fillStyle = "#fff";
         if (this.score > tager)
-            this.context.fillStyle = "#FF6600";
-        this.context.font = this.getWidth() + 'px Stencil';
-        this.context.fillText(this.score, this.getWidth() * 1.5, this.getWidth() * 1.35);
+            this.context.fillStyle = "#fff";
+        this.context.font = this.getWidth()*0.4 + 'px Stencil';
+        this.context.fillText('$'+this.score, this.getWidth()*1.8, this.getWidth() * 2.45);
+       
+        // 目标分数
+        this.context.drawImage(targetIM, this.getWidth() / 2, this.getWidth() *2.9, this.getWidth()*2.6, this.getWidth()*0.6);
+        //文字
+        this.context.fillStyle = "#fff";
+        this.context.font = this.getWidth()*0.4 + 'px Stencil';
+        this.context.fillText('$'+tager, this.getWidth() * 1.8, this.getWidth() * 3.3);
 
-        this.context.drawImage(targetIM, this.getWidth() / 2, this.getWidth() / 2 + this.getWidth(), this.getWidth(), this.getWidth());
-        this.context.fillStyle = "#FF6600";
-        this.context.font = this.getWidth() + 'px Stencil';
-        this.context.fillText(tager, this.getWidth() * 1.5, this.getWidth() * 2.35);
+        // 闯关
+        this.context.drawImage(levelIM, game_W - 3 * this.getWidth(), this.getWidth() *2, this.getWidth()*2.6, this.getWidth()*0.6);
+        //文字
+        this.context.fillStyle = "#fff";
+        this.context.font = this.getWidth()*0.4 + 'px Stencil';
+        this.context.fillText(level + 1, game_W - 1.05 * this.getWidth(), this.getWidth() * 2.4);
 
-        this.context.drawImage(levelIM, game_W - 3 * this.getWidth(), this.getWidth() / 2, this.getWidth(), this.getWidth());
-        this.context.fillStyle = "#FFFFCC";
-        this.context.font = this.getWidth() + 'px Stencil';
-        this.context.fillText(level + 1, game_W - 2 * this.getWidth(), this.getWidth() * 1.35);
-
-        this.context.drawImage(clockIM, game_W - 3 * this.getWidth(), this.getWidth() / 2 + this.getWidth(), this.getWidth(), this.getWidth());
-        this.context.fillStyle = "#FF00FF";
-        this.context.font = this.getWidth() + 'px Stencil';
-        this.context.fillText(Math.floor(time), game_W - 2 * this.getWidth(), this.getWidth() * 2.35);
+        //倒计时
+        this.context.drawImage(clockIM, game_W - 3 * this.getWidth(), this.getWidth() *2.9, this.getWidth()*2.6, this.getWidth()*0.6);
+        //文字
+        this.context.fillStyle = "#fff";
+        this.context.font = this.getWidth()*0.4 + 'px Stencil';
+        this.context.fillText(Math.floor(time), game_W - 1.15 * this.getWidth(), this.getWidth() * 3.3);
 
         if (Math.abs(timeH - time) <= 0.7) {
-            this.context.fillStyle = "red";
-            this.context.fillText("+" + vlH, XXX, YYY * 0.8);
+            this.context.drawImage(scoreIM, XXX-200, YYY+80, this.getWidth()*1.9, this.getWidth()*1.6);
+            this.context.fillStyle = "#fff";
+            this.context.fillText("+" + vlH, XXX-170, YYY+140);
         }
     }
 
