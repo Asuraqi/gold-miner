@@ -51,48 +51,48 @@ class gold {
             case 0:
             case 1:
             case 2:
-                this.speed = this.game.getWidth() / 30;
+                this.speed = this.game.getWidth() / 20;
                 this.width = 2.5*this.game.getWidth();
                 this.height = 2.5*this.game.getWidth();
                 this.IM = this.arr1[this.random1];
-                this.score = 100;  
+                this.score = 300;  
                 break;
             case 3:
             case 4:
             case 5:
             case 6:
             case 7:
-                this.speed = this.game.getWidth() / 20;
-                this.width = 1.5*this.game.getWidth();
-                this.height = 1.5*this.game.getWidth();
+                this.speed = this.game.getWidth() / 10;
+                this.width = 1*this.game.getWidth();
+                this.height = 1*this.game.getWidth();
                 this.IM = this.arr2[this.random2];
-                this.score = 100;  
+                this.score = 88;  
                 break;
             case 8:
             case 9: 
             case 10:
-                this.speed = this.game.getWidth() / 5;
+                this.speed = this.game.getWidth() / 8;
                 this.width = this.game.getWidth() / 2;
                 this.height = this.game.getWidth() / 2.5;
                 this.IM = this.arr3[this.random3];
-                this.score = 600;
+                this.score = 666;
                 break;
             case 11:
             case 12:
-                this.speed = this.game.getWidth() / 65;
-                this.width = 2 * this.game.getWidth();
-                this.height = 2 * this.game.getWidth();
+                this.speed = this.game.getWidth() / 15;
+                this.width = 1.5 * this.game.getWidth();
+                this.height = 1.5 * this.game.getWidth();
                 this.IM = rockIm;
-                this.score = 30;
+                this.score = 11;
                 break;
             case 13:
             case 14:
             case 15:
                 this.speed = this.game.getWidth() / 40;
-                this.width = this.game.getWidth();
-                this.height = this.game.getWidth();
+                this.width = 2*this.game.getWidth();
+                this.height = 2*this.game.getWidth();
                 this.IM = rockIm;
-                this.score = 15;
+                this.score = 50;
                 break;
         }
     }

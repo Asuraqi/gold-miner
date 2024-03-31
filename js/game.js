@@ -108,8 +108,8 @@ class game {
     update() {
         this.render();
         time -= 0.01;
-        Xh = XXX + r * Math.cos(this.toRadian(angle));
-        Yh = YYY + r * Math.sin(this.toRadian(angle));
+        Xh = XXX-50 + r * Math.cos(this.toRadian(angle));
+        Yh = YYY+80 + r * Math.sin(this.toRadian(angle));
         if (!drag) {
             angle += ChAngle;
             if (angle >= 165 || angle <= 15)
@@ -158,7 +158,7 @@ class game {
             game_H = this.canvas.height;
             XXX = game_W / 2;
             YYY = game_H * 0.18;
-            R = this.getWidth() * 2;
+            R = this.getWidth() * 1;
             if (!drag)
                 r = R;
             MaxLeng = this.range(XXX, YYY, game_W - 2 * this.getWidth(), game_H - 2 * this.getWidth());
@@ -180,7 +180,7 @@ class game {
         this.context.strokeStyle  = "#3D3D3D";
         this.context.lineWidth = Math.floor(this.getWidth() / 20);
         this.context.moveTo(XXX-50, YYY+80);
-        this.context.lineTo(Xh-25, Yh+40);
+        this.context.lineTo(Xh, Yh);
         
         //圆点
         this.context.stroke();
@@ -189,8 +189,8 @@ class game {
         this.context.stroke();
 
         this.context.save();
-        this.context.translate(Xh-25, Yh+40);
-        this.context.rotate(this.toRadian(angle - 100));
+        this.context.translate(Xh, Yh);
+        this.context.rotate(this.toRadian(angle - 90));
         // 钩子
         this.context.drawImage(hook, - this.getWidth() / 4,- this.getWidth() / 8, this.getWidth() / 2, this.getWidth() / 2);
         this.context.restore();
